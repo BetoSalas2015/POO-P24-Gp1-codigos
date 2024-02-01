@@ -13,4 +13,6 @@ comment5.params=index\ jugador
 comment5.target=void\ agregaJugador(int,\ java.lang.String)
 comment6.params=index
 comment6.target=java.lang.String\ getJugador(int)
-numComments=7
+comment7.params=args
+comment7.target=void\ main(java.lang.String[])
+numComments=8
