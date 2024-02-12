@@ -11,6 +11,8 @@ public class Arreglos
     private int arreglo[], variable ;
     private int []arreglo1, arreglo4 = new int[15];
     private int[] arreglo2, arreglo5 = { 0, 1, 2, 3, 4, 5};
+    ;
+    private int[][] matriz = { {1,2,3 }, {4}, {5,6,7,8}, { 9,10 } };
     
     public Arreglos() {
         arreglo = new int[10];
@@ -23,6 +25,13 @@ public class Arreglos
             
         cambiaArreglo(arreglo4);        // Paso de Parametros por referencia (alias)
         cambiaVariable(variable);       // Paso de argumentos por valor (copia)
+        
+        for(int i = 0; i < matriz.length; i++) {
+            for(int j = 0; j < matriz[i].length; j++)
+                System.out.print( matriz[i][j] + ",");
+            System.out.println("");
+        }
+        
     }
     
     public void cambiaVariable(int var) { 

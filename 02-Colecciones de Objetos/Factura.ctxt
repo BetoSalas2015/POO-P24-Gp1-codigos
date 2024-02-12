@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=Factura
+comment1.params=nomCliente
+comment1.target=Factura(java.lang.String)
+comment1.text=\r\n\ Constructor\ para\ objetos\ de\ la\ clase\ Factura\r\n
+comment2.params=
+comment2.target=int\ getNumArt\u00EDculos()
+comment3.params=art
+comment3.target=void\ agregaArticulo(Articulo)
+comment4.params=index
+comment4.target=Articulo\ getArticulo(int)
+comment5.params=index\ nuevo
+comment5.target=void\ setArt\u00EDculo(int,\ Articulo)
+comment6.params=
+comment6.target=double\ calculaTotalArticulos()
+comment7.params=
+comment7.target=double\ calculaTotalArticulos1()
+numComments=8

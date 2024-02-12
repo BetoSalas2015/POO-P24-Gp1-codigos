@@ -33,7 +33,7 @@ public class EquipoFutbol
     
     public void agregaJugador(int index, String jugador) {
         if(index >= 1 &&  index <= 11) 
-                    = new String(jugador);
+              equipo[index - 1]= new String(jugador);
     }
     
     public String getJugador(int index) {
