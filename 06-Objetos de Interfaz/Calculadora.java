@@ -1,13 +1,20 @@
 /**
- * Calculadora
+ * Calculadora V2 - awt 1.1
  */
 import java.awt.*;
+import java.awt.event.*;
 
 public class Calculadora extends Frame {
+    //  Interfaz
     private Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9;
     private Button btnMas, btnMenos, btnMult, btnDiv, btnPunto, btnIgual, btnC;
     private TextField txtDisplay; 
     private Panel pnlTeclado, pnlDisplay;
+    // Funcionalidad
+    private double numero1, numero2, resultado;
+    private char operación;
+    private boolean operando, punto;
+    private String displaynum, sign;
 
     public Calculadora() {
         super("Calculadora");
@@ -42,12 +49,94 @@ public class Calculadora extends Frame {
         //  Agregamos los paneles al Frame
         add(pnlDisplay, "North");
         add(pnlTeclado, "Center");
+
+        // Funcionalidad
+        punto = operando = true;
+
+        // Declaración de listeners
+        addWindowListener(new CloseWindow());
     }
+
+    private class CloseWindow extends WindowAdapter {
+        @Override
+        public void windowClosing(WindowEvent e) {
+            setVisible(false);
+            dispose();
+        }
+    }
+
+    public class BotonC implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            txtDisplay.setText("0");
+            punto = operando = true;
+            numero1 = numero2 = 0.0;   
+        }  
+    }
+
+    public class BotonOpera implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Button btnTemp = (Button) e.target;
+            sign = new String(btnTemp.getLabel());
+            operación = sign.charAt(0);
+            numero1 = Double.parseDouble( txtDisplay.getText()) ;
+            txtDisplay.setText("0");
+            operando = false;
+            
+        }  
+    }
+
+    public class BotonIgual implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            numero2 = Double.parseDouble(txtDisplay.getText());
+            switch (operación) {
+                case '+': resultado = numero1 + numero2;  break;
+                case '-': resultado = numero1 - numero2;  break;
+                case '*': resultado = numero1 * numero2;  break;
+                case '/': resultado = numero1 / numero2;  break;
+
+            }
+            txtDisplay.setText(String.valueOf(resultado));
+            operando = punto = true;
+            
+        }  
+    }
+
+    public class BotonPunto implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (punto) {
+                displaynum = new String(txtDisplay.getText());
+                displaynum += ".";
+                txtDisplay.setText(displaynum);
+                punto = false;
+            } // de if(punto)
+            
+        }  
+    }
+    public class BotonNumero implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            displaynum = new String( txtDisplay.getText() );
+            if( displaynum.equals("0") )
+                displaynum = "";
+            Button btnTemp = (Button) e.target;
+            displaynum += btnTemp.getLabel();
+            txtDisplay.setText(displaynum);
+            
+        }  
+    }
+
+    
 
     public static void main(String[] args) {
         Calculadora calc = new Calculadora();
         calc.resize(400,400);
         calc.show();
     }
+
     
 }
+
