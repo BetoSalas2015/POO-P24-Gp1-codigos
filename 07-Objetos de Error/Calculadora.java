@@ -1,5 +1,5 @@
 /**
- * Calculadora V3 - Swing
+ * Calculadora V4 - GEstión de excepciones
  */
 import java.awt.*;
 import java.awt.event.*;
@@ -114,18 +114,29 @@ public class Calculadora extends JFrame {
     public class BotonIgual implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+            try {
+                opera();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null,ex.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+            }
+            
+        }  
+
+        private void opera() throws DivideByZeroException {
             numero2 = Double.parseDouble(txtDisplay.getText());
             switch (operación) {
                 case '+': resultado = numero1 + numero2;  break;
                 case '-': resultado = numero1 - numero2;  break;
                 case '*': resultado = numero1 * numero2;  break;
-                case '/': resultado = numero1 / numero2;  break;
+                case '/': if (numero2 == 0) {
+                    throw new DivideByZeroException();
+                }               
+                resultado = numero1 / numero2;  break;
 
             }
             txtDisplay.setText(String.valueOf(resultado));
             operando = punto = true;
-            
-        }  
+        }
     }
 
     public class BotonPunto implements ActionListener {

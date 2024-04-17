@@ -1,40 +1,39 @@
 /**
- * Calculadora V3 - Swing
+ * Calculadora V2 - awt 1.1
  */
 import java.awt.*;
 import java.awt.event.*;
-import javax.swing.*;
 
-public class Calculadora extends JFrame {
+public class Calculadora2 extends Frame {
     //  Interfaz
-    private JButton btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9;
-    private JButton btnMas, btnMenos, btnMult, btnDiv, btnPunto, btnIgual, btnC;
-    private JTextField txtDisplay; 
-    private JPanel pnlTeclado, pnlDisplay;
+    private Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9;
+    private Button btnMas, btnMenos, btnMult, btnDiv, btnPunto, btnIgual, btnC;
+    private TextField txtDisplay; 
+    private Panel pnlTeclado, pnlDisplay;
     // Funcionalidad
     private double numero1, numero2, resultado;
     private char operación;
     private boolean operando, punto;
     private String displaynum, sign;
 
-    public Calculadora() {
+    public Calculadora2() {
         super("Calculadora");
 
         //  Creación de Objetos
-        btn0 = new JButton("0");     btn1 = new JButton("1"); 
-        btn2 = new JButton("2");     btn3 = new JButton("3"); 
-        btn4 = new JButton("4");     btn5 = new JButton("5"); 
-        btn6 = new JButton("6");     btn7 = new JButton("7"); 
-        btn8 = new JButton("8");     btn9 = new JButton("9"); 
-        btnMas = new JButton("+");   btnMenos = new JButton("-"); 
-        btnMult = new JButton("*");  btnDiv = new JButton("/"); 
-        btnPunto = new JButton("."); btnIgual = new JButton("="); 
-        btnC = new JButton("C"); 
+        btn0 = new Button("0");     btn1 = new Button("1"); 
+        btn2 = new Button("2");     btn3 = new Button("3"); 
+        btn4 = new Button("4");     btn5 = new Button("5"); 
+        btn6 = new Button("6");     btn7 = new Button("7"); 
+        btn8 = new Button("8");     btn9 = new Button("9"); 
+        btnMas = new Button("+");   btnMenos = new Button("-"); 
+        btnMult = new Button("*");  btnDiv = new Button("/"); 
+        btnPunto = new Button("."); btnIgual = new Button("="); 
+        btnC = new Button("C"); 
 
-        txtDisplay = new JTextField("0");
+        txtDisplay = new TextField("0");
 
-        pnlDisplay = new JPanel();
-        pnlTeclado = new JPanel();
+        pnlDisplay = new Panel();
+        pnlTeclado = new Panel();
 
         // Organizar los paneles
         pnlDisplay.setLayout( new BorderLayout() );
@@ -47,7 +46,7 @@ public class Calculadora extends JFrame {
         pnlTeclado.add(btn1);   pnlTeclado.add(btn2);   pnlTeclado.add(btn3);   pnlTeclado.add(btnMenos);
         pnlTeclado.add(btnIgual);   pnlTeclado.add(btn0);   pnlTeclado.add(btnPunto);   pnlTeclado.add(btnMas);
 
-        //  Agregamos los paneles al JFrame
+        //  Agregamos los paneles al Frame
         add(pnlDisplay, "North");
         add(pnlTeclado, "Center");
 
@@ -77,7 +76,7 @@ public class Calculadora extends JFrame {
         // Configuración de ventana
         setSize(400, 400);
         setVisible(true);
-        //txtDisplay.setEditable(false);
+        txtDisplay.setEditable(false);
         setResizable(false);
     }
 
@@ -155,8 +154,8 @@ public class Calculadora extends JFrame {
     
 
     public static void main(String[] args) {
-        Calculadora calc = new Calculadora();
-        Calculadora calc1 = new Calculadora();
+        Calculadora2 calc = new Calculadora2();
+        Calculadora2 calc1 = new Calculadora2();
     }
 
     
