@@ -1,15 +1,20 @@
 /**
- * ReadFile1
+ * ReadFile41
  */
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 
-public class ReadFile extends Frame {
+public class ReadFile4 extends Frame {
     private TextArea editor;
-    private DataInputStream entrada;
+    private DataOutputStream salida;
+    //private BufferedWriter salida;
 
-    public ReadFile() throws IOException {
+    private String nombres[] = {"Juan", "Raul", "Miguel"};
+    private String apellidos[] = {"Pérez", "Zapata", "Díaz"};
+    private int edades[] = { 25, 19, 35 };
+
+    public ReadFile4() throws IOException {
         super("Lector de Archivos");
         String c;
         editor = new TextArea();
@@ -17,25 +22,22 @@ public class ReadFile extends Frame {
         add(editor, "Center");
 
         try {
-            //entrada =  new BufferedReader(new FileReader("ReadFile.java"));
-            entrada = new DataInputStream(
-                     new BufferedInputStream(
-                     new FileInputStream("agenda.dat")));  
+            //entrada =  new BufferedReader(new FileReader("ReadFile4.java"));
+            salida = new DataOutputStream(
+                     new BufferedOutputStream(
+                     new FileOutputStream("agenda.dat")));  
 
-            while(true) {
-                String nomString = entrada.readUTF();
-                String apString = entrada.readUTF();
-                int edad = entrada.readInt();
-                c = nomString + " " + apString + ", Edad: " + edad + "\n";
-                editor.append(c);
+            for (int i = 0; i < 3; i++) {
+                salida.writeUTF(nombres[i]);
+                salida.writeUTF(apellidos[i]);
+                salida.writeInt(edades[i]);
             }
-        } catch (EOFException exception) {
-                System.out.println("Fin de Arcchivo Alcanzado");
+   
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } finally {
-            entrada.close();
-            
+            //entrada.close();
+            salida.close();
         }
 
         setSize(400, 400);
@@ -54,7 +56,7 @@ public class ReadFile extends Frame {
 
     public static void main(String[] args) { 
         try {
-            ReadFile readFile = new ReadFile();
+            ReadFile4 ReadFile4 = new ReadFile4();
         } catch (IOException e) {
             e.printStackTrace();
         }
